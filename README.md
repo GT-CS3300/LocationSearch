@@ -51,6 +51,7 @@ Returns a 400 and a JSON in the format of the JSON below
 ```
 searches: {
   locationSearch{
+    id: (a unique number),
     lat: (regex),
     long: (regex)
   }, ...
