@@ -1,1 +1,1 @@
-# LocationSearch
+The general purpose and objective of this project is to develop a website application with the functionality of returning a detailed list of interesting locations based on Latitude and Longitude values entered by a user. Additionally, the application will support a login feature via a landing page which will allow for existing users to login with their username and password and new users to sign up and have their data stored securely for future use.
