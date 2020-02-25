@@ -3,6 +3,11 @@ The general purpose and objective of this project is to develop a website applic
 ***
 
 ## Work allocation
+- Victoria - Frontend
+- Thomas - Frontend
+- Mike - Backend (Database/API Endpoints)
+- Harry - Backend(Pulltogether)
+- Kaijian - Backend(Places API)
 
 ## Additional Features
 ### "Search History" Page
@@ -14,14 +19,31 @@ The general purpose and objective of this project is to develop a website applic
 
 ## /login
 ### GET
-```login {
- 	email: "user@example.com",
- 	password: "xxxxxx"
-	}```
+
+```
+login {
+    email: "user@example.com",
+    password: "xxxxxx"
+	}
+```
+
+returns authentication token to be saved in a cookie
 
 ## /signup
 ### POST
-```signup {
-	email: "user@example.com",
-	password: "xxxxxxxxx"
-	}```
+```
+signup {
+    email: "user@example.com",
+    password: "xxxxxxxxx"
+	}
+```
+
+redirects to login page
+
+## /history
+
+### GET
+
+### POST
+
+### DELETE/{$id}
