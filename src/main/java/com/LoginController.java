@@ -1,4 +1,4 @@
-package main.java.com;
+package com;
 
 public class LoginController {
 	private String email;
@@ -40,4 +40,5 @@ public class LoginController {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 }

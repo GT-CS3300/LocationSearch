@@ -1,4 +1,4 @@
-package main.java.com;
+package com;
 
 public class SignupController {
 	private User user;
