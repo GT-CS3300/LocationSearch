@@ -1,4 +1,4 @@
-package com;
+package test.java.com;
 
 import java.io.IOException;
 import java.io.PrintWriter;
