@@ -5,7 +5,7 @@ html, body {
     background-image : url('../assets/map_bg.png');
     background-size: 960px 568px;
     background-repeat:no-repeat;
-    background-position:center bottom 
+    background-position:center bottom
 }
 
 
@@ -27,12 +27,12 @@ html, body {
 }
 
 .signup-column {
-    padding-top:60px;
+    padding-top:120px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 380px;
-    height: 288px;
+    height: 408px;
 }
 
 
