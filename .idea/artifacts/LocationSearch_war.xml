@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="LocationSearch:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>LocationSearch</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="LocationSearch-0.1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="LocationSearch:war exploded" />
+    </root>
+  </artifact>
+</component>
