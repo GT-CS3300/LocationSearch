@@ -2,9 +2,12 @@ $(document).ready(function() {
 	$("#login").click(function() {
 		var email = $("#email").val();
 		var pwd = $("#password").val();
+		
+		alert('Nani')
+		
 		$.ajax({
 			type: 'POST',
-			url: '/hello/postItLocalSearch',
+			url: '/login/verify',
 			data: {'Email': email,'Password':pwd },
 			success: function(dataFromServer) {
 				var result = JSON.parse(dataFromServer);
@@ -12,7 +15,7 @@ $(document).ready(function() {
 				alert('Just got back from server side!! with '+ dataFromServer)
 			},
 			error: function() {
-				alert('Something bad happened in our server !!')
+				alert('Shite bad happened in our server !!')
 			}
 			});
 	});

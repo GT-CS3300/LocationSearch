@@ -11,7 +11,6 @@ public class User implements Serializable {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private String dob;
 	/*More attributes if needed*/
 	
 	public User() {
@@ -43,14 +42,6 @@ public class User implements Serializable {
 	public void setName(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-	}
-	
-	public String getDob() {
-		return this.dob;
-	}
-	
-	public void setDob(String dob) {
-		this.dob = dob;
 	}
 	
 	/*More attribute getters and setters if needed*/

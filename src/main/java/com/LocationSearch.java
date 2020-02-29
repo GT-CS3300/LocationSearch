@@ -6,11 +6,11 @@ public class LocationSearch {
 	private int radius;
 	private User user;
 	
-	public LocationSearch(float latitude, float longitude, int radius, User user) {
+	public LocationSearch(float latitude, float longitude, int radius) {
 		this.setLatitude(latitude);
 		this.setLongitude(longitude);
 		this.setRadius(radius);
-		this.setUser(user);
+		this.setUser(new User());
 	}
 	
 	// Setters and getters for user input values, they should already be checked by front-end to be correct format
@@ -52,11 +52,13 @@ public class LocationSearch {
 	 * @param longitude input value
 	 * @param radius input value
 	 */
-	public void search(float latitude, float longitude, int radius) {
+	public String search() {
 		// Use Places API to return a list of places for given input values (JSONObject)
 		
 		// On successful search, store this search with the user
 		this.storeHistory(this.user);
+		
+		return "results";
 	}
 	
 	/**

@@ -1,44 +1,30 @@
 package com;
 
+import java.io.IOException;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/login")
 public class LoginController {
-	private String email;
-	private String password;
-	
-	public LoginController(String email, String password) {
-		// Set email and password based on input given from front-end
-		this.setEmail(email);
-		this.setPassword(password);
-	}
-	
-	/**
-	 * Authenticate user based on their login input.
-	 * @return true if email and password are correct, otherwise false
-	 */
-	public boolean verifyPassword() {
-		// Get the password associated with the given email from database
+		  
+	@RequestMapping(value="/verify", method=RequestMethod.POST)
+	public String postMePlease(HttpServletRequest request, HttpServletResponse response) throws IOException { 
+		Login login = new Login(request.getParameter("Email"), request.getParameter("Password"));
+	  
+		if (login.verifyPassword()) {
+			return "true";
+		}
 		
-		// If password is correct return true, else return false
-		
-		// If no result is returned from the get password query i.e. email is not in database, throw exception
-		
-		return true;
+		return "false";	  
 	}
-	
-	// Getters and Setters for email and password
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
 }

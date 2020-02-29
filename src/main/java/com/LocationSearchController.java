@@ -10,20 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/signup")
-public class SignupController {
+@RequestMapping("/search")
+public class LocationSearchController {
 	
-	@RequestMapping(value="/store", method=RequestMethod.POST)
+	@RequestMapping(value="/result", method=RequestMethod.POST)
 	public String postMePlease(HttpServletRequest request, HttpServletResponse response) throws IOException { 
-		Signup signup = new Signup();
+		LocationSearch locationSearch = new LocationSearch(Float.valueOf(request.getParameter("Latitude")), 
+				Float.valueOf(request.getParameter("Longitude")), Integer.valueOf(request.getParameter("Radius")));
+	  
 		
-		signup.createUser(request.getParameter("Email"), request.getParameter("Password"), 
-				request.getParameter("Firstname"), request.getParameter("Lastname"));
-		
-		if (signup.storeUser() == true) {
-			return "true";
-		}
-		
-		return "false";
+		return locationSearch.search();  
 	}
 }
