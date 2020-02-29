@@ -2,9 +2,6 @@ $(document).ready(function() {
 	$("#login").click(function() {
 		var email = $("#email").val();
 		var pwd = $("#password").val();
-		
-		alert('Nani')
-		
 		$.ajax({
 			type: 'POST',
 			url: '/login/verify',
@@ -13,12 +10,44 @@ $(document).ready(function() {
 				var result = JSON.parse(dataFromServer);
 				$("#firstDivID").text(result);
 				alert('Just got back from server side!! with '+ dataFromServer)
+				
+				if (dataFromServer == "true") {
+					alert('Proceed to the locationSearchScreen page if login is good')
+					window.location.href = "locationSearchScreen.html"; // get this to work plz
+				} else {
+					alert('Wrong login credentials')
+				}
 			},
 			error: function() {
-				alert('Shite bad happened in our server !!')
+				alert('Shite happened in our server !!')
 			}
-			});
-	});
+		});
+    });
+	
+	$("#signup").click(function() {
+		var email = $("#username").val();
+		var pwd = $("#password").val();
+		$.ajax({
+			type: 'POST',
+			url: '/signup/store',
+			data: {'Email': email,'Password':pwd, 'Firstname': "Mahdi", 'Lastname':  "Rooz"},
+			success: function(dataFromServer) {
+				var result = JSON.parse(dataFromServer);
+				$("#firstDivID").text(result);
+				alert('Just got back from server side!! with '+ dataFromServer)
+				
+				if (dataFromServer == "true") {
+					alert('Proceed to the locationSearchScreen page if signup is good')
+					window.location.href = "locationSearchScreen.html"; // get this to work plz
+				} else {
+					alert('Bad signup')
+				}
+			},
+			error: function() {
+				alert('Shite happened in our server !!')
+			}
+		});
+    });
 
 	$('#search').click(function() {
 

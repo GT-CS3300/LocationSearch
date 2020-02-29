@@ -21,7 +21,11 @@ public class Login {
 		
 		// If no result is returned from the get password query i.e. email is not in database, also return false 
 		
-		return true;
+		if (this.getEmail().equals("mahdi") && this.getPassword().equals("123456")) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	// Getters and Setters for email and password

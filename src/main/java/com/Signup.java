@@ -34,6 +34,10 @@ public class Signup {
 		// Check if user's email is already in database, if so return false
 		
 		// Otherwise, connect to database and store user information
+		
+		if (this.user.getEmail().equals("mahdi") && this.user.getPassword().equals("123456")) {
+			return false;
+		}
 		return true;
 	}
 	
