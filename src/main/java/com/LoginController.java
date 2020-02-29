@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 		  
 	@RequestMapping(value="/verify", method=RequestMethod.POST)
-	public String postMePlease(HttpServletRequest request, HttpServletResponse response) throws IOException { 
+	public String post(HttpServletRequest request, HttpServletResponse response) throws IOException { 
 		Login login = new Login(request.getParameter("Email"), request.getParameter("Password"));
 	  
 		if (login.verifyPassword()) {

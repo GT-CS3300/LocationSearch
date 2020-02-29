@@ -10,7 +10,7 @@ public class LocationSearch {
 		this.setLatitude(latitude);
 		this.setLongitude(longitude);
 		this.setRadius(radius);
-		this.setUser(new User());
+		this.setUser(new User()); // Might not need to have User as store user info might be too hard
 	}
 	
 	// Setters and getters for user input values, they should already be checked by front-end to be correct format
