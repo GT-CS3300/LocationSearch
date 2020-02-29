@@ -10,14 +10,19 @@ $(document).ready(function() {
         if (emailRegex.test(email) && passwordRegex.test(pwd)) {
             $.ajax({
                 type: 'POST',
-                url: '/hello/postItLocalSearch',
-                data: {'Email': email,'Password':pwd, 'First Name': fName, 'Last Name': lName},
+                url: '/signup/store',
+                data: {'Email': email,'Password':pwd, 'Firstname': "Mahdi", 'Lastname':  "Rooz"},
                 success: function(dataFromServer) {
                     var result = JSON.parse(dataFromServer);
-                    console.log("Server has succeeded.");
+                    
+                    if (dataFromServer == "true") {
+						window.location.assign("locationSearchScreen.html"); 
+                    } else {
+
+                    }
                 },
                 error: function() {
-                    console.log("Server has failed.");
+					console.log("Signup failed");
                 }
             });
         } else {
