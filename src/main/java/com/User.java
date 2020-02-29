@@ -1,34 +1,49 @@
 package com;
+
 import java.io.Serializable;
 
-public class User implements Serializable{
+public class User implements Serializable {
+	// Serial ID
 	private static final long serialVersionUID = -8224583530000882248L;
-	String Name,Email,Password;
-	public User(String Name,String Email,String Password) {
-		this.Email = Email;
-		this.Name = Name;
-		this.Password = Password;
+	
+	// User attributes
+	private String email;
+	private String password;
+	private String firstName;
+	private String lastName;
+	/*More attributes if needed*/
+	
+	public User() {
+		this.email = "email";
+		this.password = "password";
 	}
-	public String getName() {
-		return Name;
-	}
-	public void setName(String name) {
-		Name = name;
-	}
+	
+	// Generic Getters and setters
 	public String getEmail() {
-		return Email;
+		return this.email;
 	}
+	
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
+	
 	public String getPassword() {
-		return Password;
+		return this.password;
 	}
+	
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 	
-	// Generating Getters and setters 
+	public String getName() {
+		return this.firstName + " " + this.lastName;
+	}
 	
+	public void setName(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+	
+	/*More attribute getters and setters if needed*/
 	
 }
