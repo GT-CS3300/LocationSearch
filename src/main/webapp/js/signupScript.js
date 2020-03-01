@@ -11,7 +11,7 @@ $(document).ready(function() {
             $.ajax({
                 type: 'POST',
                 url: '/signup/store',
-                data: {'Email': email,'Password':pwd, 'Firstname': "Mahdi", 'Lastname':  "Rooz"},
+                data: {'Email': email,'Password':pwd, 'Firstname': fName, 'Lastname':  lName},
                 success: function(dataFromServer) {
                     var result = JSON.parse(dataFromServer);
                     
@@ -23,10 +23,14 @@ $(document).ready(function() {
                 },
                 error: function() {
 					console.log("Signup failed");
+					$(".error-message").text("Signup failed to reach server, please try again.");
+					$(".error-message").css("display", "flex");
                 }
             });
         } else {
-
+			console.log("Regex test failed");
+			$(".error-message").text("Your information does not match our requirements.");
+			$(".error-message").css("display", "flex");
         }
     });
 });

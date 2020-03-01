@@ -23,16 +23,28 @@ html, body {
     flex-direction: column;
     justify-content: space-between;
     width: 380px;
-    height: 228px;
+    height: 258px;
 }
 
 .signup-column {
-    padding-top:120px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 380px;
-    height: 408px;
+    height: 438px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+}
+
+.footer-links > a {
+    font-size:20px;
+    text-decoration:none;
+    font-family: "Open Sans";
+    font-weight:bold;
 }
 
 
@@ -158,6 +170,23 @@ input::placeholder {
 
 input:placeholder-shown {
     padding-left:5px;
+}
+
+.error-message {
+    height: 45px;
+    background-color:#FF0000;
+    border:0px;
+    border-radius:5px;
+    display:none;
+    justify-content: center;
+    align-items: center;
+    color:white;    
+    font-size:16px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Open Sans";
+    padding:3px;
+    text-align:center;
 }
 
 .submit-button {

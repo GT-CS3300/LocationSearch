@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	$("button").click(function() {
 		var email = $("#email").val();
 		var pwd = $("#password").val();
@@ -20,10 +21,14 @@ $(document).ready(function() {
 				},
 				error: function() {
 					console.log("Login failed");
+					$(".error-message").text("Login failed to reach server, please try again.");
+					$(".error-message").css("display", "flex");
 				}
 			});
         } else {
-
+			console.log("Regex test failed");
+			$(".error-message").text("Your email or password is invalid.");
+			$(".error-message").css("display", "flex");
         }
 
     });
