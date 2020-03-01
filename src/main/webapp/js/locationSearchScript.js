@@ -39,6 +39,8 @@ $(document).ready(function() {
 				},
 				error: function() {
 					console.log("Search failed");
+					$(".error-message").text("Search failed to reach server, please try again.");
+					$(".error-message").css("display", "flex");
 				}
 			});
 
@@ -63,7 +65,9 @@ $(document).ready(function() {
 			$("#table-id").html(tableHTML);
 			addRows($('.table-query').height(), $("#table-id").height(), $('tr:eq(1)').height());
 		} else {
-			console.log("Invalid Latitude Longitude");
+			console.log("Regex test failed");
+			$(".error-message").text("Your coordinates are invalid.");
+			$(".error-message").css("display", "flex");
 		}
 	});
 });
