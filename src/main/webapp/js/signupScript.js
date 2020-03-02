@@ -1,7 +1,15 @@
 $(document).ready(function() {
+    $("#password").focus(function() {
+        $(".help-message").fadeIn(200);
+    });
+
+    $("#password").focusout(function() {
+        $(".help-message").fadeOut(200);
+    });
+
     $("button").click(function() {
-        var emailRegex = /^A-Za-z0-9@(?:[0-9a-zA-Z-]+.)+[a-zA-Z]{2,9}$/
-        var passwordRegex = /^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[a-zA-Z]).{8,}$/
+        var emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[a-zA-Z]+$/
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
         var email = $("#email").val();
         var pwd = $("#password").val();
