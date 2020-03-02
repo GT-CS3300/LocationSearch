@@ -1,22 +1,26 @@
 package com;
 
+import java.nio.file.LinkOption;
+
 public class LocationSearch {
 	private float latitude;
 	private float longitude;
-	private int radius;
 	private User user;
 	
-	public LocationSearch(float latitude, float longitude, int radius) {
+	public LocationSearch(float latitude, float longitude) {
 		this.setLatitude(latitude);
 		this.setLongitude(longitude);
-		this.setRadius(radius);
 //		this.setUser(new User());
+	}
+
+	public LocationSearch(float lat, float lon, User user){
+		this.latitude = lat;
+		this.longitude = lon;
+		this.user = user;
 	}
 	
 	// Setters and getters for user input values, they should already be checked by front-end to be correct format
-	public float getLatitude() {
-		return latitude;
-	}
+	public float getLatitude() { return latitude; }
 
 	public void setLatitude(float latitude) {
 		this.latitude = latitude;
@@ -28,14 +32,6 @@ public class LocationSearch {
 
 	public void setLongitude(float longitude) {
 		this.longitude = longitude;
-	}
-
-	public int getRadius() {
-		return radius;
-	}
-
-	public void setRadius(int radius) {
-		this.radius = radius;
 	}
 	
 	public User getUser() {
@@ -85,6 +81,5 @@ public class LocationSearch {
 	public void clear() {
 		this.latitude = 0;
 		this.longitude = 0;
-		this.radius = 0;
 	}
 }

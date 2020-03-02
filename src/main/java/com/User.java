@@ -45,6 +45,9 @@ public class User implements Serializable {
 		return hash.equals(str);
 	}
 
+	public String getHash(){
+		return hash;
+	}
 	
 	public void setHash(String password) {
 		//TODO gonna need to hash this before setting it
