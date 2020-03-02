@@ -28,7 +28,7 @@ public class Signup {
 	 */
 	public boolean storeUser() {	
 		// TODO: Hard coded values for now, need to replace this with database verification
-		if (this.user.getEmail().equals("mahdi") && this.user.getPassword().equals("123456")) {
+		if (this.user.getEmail().equals("mahdi@hotmail.com")) {
 			return false;
 		}
 		
