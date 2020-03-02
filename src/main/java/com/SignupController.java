@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SignupController {
 	
 	@RequestMapping(value="/store", method=RequestMethod.POST)
-	public String postMePlease(HttpServletRequest request, HttpServletResponse response) throws IOException { 
+	public String post(HttpServletRequest request, HttpServletResponse response) throws IOException { 
 		Signup signup = new Signup();
 		
 		signup.createUser(request.getParameter("Email"), request.getParameter("Password"), 

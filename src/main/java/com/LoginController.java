@@ -14,6 +14,7 @@ public class LoginController {
 	@RequestMapping(value="/verify", method=RequestMethod.POST)
 //	@PostMapping(value="/verify")
 	public String postMePlease(HttpServletRequest request, HttpServletResponse response) throws IOException { 
+
 		Login login = new Login(request.getParameter("Email"), request.getParameter("Password"));
 	  
 		if (login.verifyPassword()) {

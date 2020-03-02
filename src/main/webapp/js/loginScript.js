@@ -5,15 +5,16 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'POST',
 			url: '/login/verify',
-			data: {'Email': email,'Password':pwd },
+			data: {'Email': email, 'Password': pwd},
 			success: function(dataFromServer) {
 				var result = JSON.parse(dataFromServer);
+				
 				$("#firstDivID").text(result);
 				alert('Just got back from server side!! with '+ dataFromServer)
 				
 				if (dataFromServer == "true") {
 					alert('Proceed to the locationSearchScreen page if login is good')
-					window.location.href = "locationSearchScreen.html"; // get this to work plz
+					window.location.href = "locationSearchScreen.html";
 				} else {
 					alert('Wrong login credentials')
 				}
