@@ -8,14 +8,18 @@ public class User implements Serializable {
 	
 	// User attributes
 	private String email;
-	private String password;
-	private String firstName;
-	private String lastName;
+	private String hash;
 	/*More attributes if needed*/
-	
-	public User() {
-		this.email = "email";
-		this.password = "password";
+
+	/**
+	 * Generic user class, really just a tuple...
+	 * @param email the email of the user
+	 * @param password the input password of the user... needs to be hashed + salted before storage...
+	 */
+	public User(String email, String password) {
+		this.email = email;
+		// TODO the hashing
+		this.hash = password;
 	}
 	
 	// Generic Getters and setters
@@ -26,22 +30,25 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public String getPassword() {
-		return this.password;
+
+	/**
+	 * Vulnerable to reflection attacks...
+	 * @param str the hash to check
+	 * @return true if the input is equal to the hash of this object
+	 */
+	public boolean isCorrectHash(String str){
+		return hash.equals(str);
 	}
+
 	
-	public void setPassword(String password) {
-		this.password = password;
+	public void setHash(String password) {
+		//TODO gonna need to hash this before setting it
+		this.hash = password;
 	}
-	
-	public String getName() {
-		return this.firstName + " " + this.lastName;
-	}
-	
-	public void setName(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+
+	public static String hashString(String str){
+		//TODO write the correct hashing function here
+		return "Unimplemented";
 	}
 	
 	/*More attribute getters and setters if needed*/

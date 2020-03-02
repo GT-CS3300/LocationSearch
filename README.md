@@ -21,9 +21,9 @@ The general purpose and objective of this project is to develop a website applic
 ### GET
 
 ```
-login {
-    email: "user@example.com",
-    password: "xxxxxx"
+"login": {
+    "email": "user@example.com",
+    "password": "xxxxxx"
 	}
 ```
 
@@ -37,7 +37,7 @@ returns authentication token to be saved in a cookie
 	}
 ```
 
-Shall redirect to login page
+Shall return a 400 on complete signup, along with returning authentication token redirect to login page
 
 ## /history
 

@@ -20,7 +20,7 @@ public class Signup {
 	public boolean createUser(String email, String password, String firstName, String lastName) {
 		// Use User class setters to set user attributes based on value obtained from front-end.
 		this.user.setEmail(email);
-		this.user.setPassword(password);
+		this.user.setHash(password);
 		this.user.setName(firstName, lastName);
 		
 		return this.storeUser();
