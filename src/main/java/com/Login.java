@@ -16,7 +16,7 @@ public class Login {
 	 */
 	public boolean verifyPassword() {
 		// TODO: Hard coded values for now, need to change this to database verification
-		if (this.getEmail().equals("mahdi") && this.getPassword().equals("123456")) {
+		if (this.getEmail().equals("mahdi@gmail.com") && this.getPassword().equals("Passw0rd")) {
 			return true;
 		}
 		

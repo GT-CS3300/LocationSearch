@@ -17,14 +17,14 @@ $(document).ready(function() {
 	$('.table-query').height($('#table-id').height());
 	$('#mapid').height($('#table-id').height());
 
-	var LatLongRegex = /^[-+]?([1-8]?\d(.\d+)?|90(.0+)?),\s*[-+]?(180(.0+)?|((1[0-7]\d)|([1-9]?\d))(.\d+)?)$/;
 	var markers = L.layerGroup();	
 	$('#search').click(function() {
 		var lat = $('#latitude').val();
 		var long = $('#longitude').val();
-		var latLong = lat + ', ' + long;
-		if (LatLongRegex.test(latLong)) {
-			map.setView([lat, long], 13);
+		var latVerify = !Number.isNaN(lat) && lat >= -90.0 && lat <= 90.0;
+		var longVerify = !Number.isNaN(long) && long >= -180.0 && long <= 180.00;
+		if (latVerify && longVerify) {
+			map.setView([lat, long], 1000);
 			markers.clearLayers();
 			var markerAr = [];
 

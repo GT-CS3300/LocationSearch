@@ -14,9 +14,10 @@ $(document).ready(function() {
 					var result = JSON.parse(dataFromServer);
 					
 					if (dataFromServer == "true") {
-						window.location.assign("locationSearchScreen.html"); 
+						window.location.assign("/html/locationSearchScreen.html"); 
+						console.log("server data success");
 					} else {
-
+						console.log("server data failed");
 					}
 				},
 				error: function() {
@@ -30,6 +31,5 @@ $(document).ready(function() {
 			$(".error-message").text("Your email or password is invalid.");
 			$(".error-message").css("display", "flex");
         }
-
     });
 });

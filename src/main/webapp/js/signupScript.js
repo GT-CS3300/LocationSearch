@@ -13,21 +13,22 @@ $(document).ready(function() {
 
         var email = $("#email").val();
         var pwd = $("#password").val();
+        var pwdConfirm = $("#password-confirmation").val();
         var fName = $("#firstName").val();
         var lName = $("#lastName").val();
-        if (emailRegex.test(email) && passwordRegex.test(pwd)) {
+        if (emailRegex.test(email) && passwordRegex.test(pwd) && pwd == pwdConfirm) {
             $.ajax({
                 type: 'POST',
                 url: '/signup/store',
                 data: {'Email': email,'Password':pwd, 'Firstname': fName, 'Lastname':  lName},
                 success: function(dataFromServer) {
-                    var result = JSON.parse(dataFromServer);
-                    
-                    if (dataFromServer == "true") {
-						window.location.assign("locationSearchScreen.html"); 
-                    } else {
-
-                    }
+					var result = JSON.parse(dataFromServer);
+					if (dataFromServer == "true") {
+						window.location.assign("/html/locationSearchScreen.html"); 
+						console.log("server data success");
+					} else {
+						console.log("server data failed");
+					}
                 },
                 error: function() {
 					console.log("Signup failed");
