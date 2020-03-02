@@ -12,16 +12,12 @@ public class Signup {
 	 * Attribute values should already be checked to be in correct format before being passed to back-end.
 	 * @param email attribute
 	 * @param password attribute
-	 * @param firstName attribute
-	 * @param lastName attribute
-	 * @param dob
 	 * @return true if user was successfully created, otherwise false
 	 */
 	public boolean createUser(String email, String password, String firstName, String lastName) {
 		// Use User class setters to set user attributes based on value obtained from front-end.
 		this.user.setEmail(email);
 		this.user.setHash(password);
-		this.user.setName(firstName, lastName);
 		
 		return this.storeUser();
 	}
@@ -34,10 +30,6 @@ public class Signup {
 		// Check if user's email is already in database, if so return false
 		
 		// Otherwise, connect to database and store user information
-		
-		if (this.user.getEmail().equals("mahdi") && this.user.getPassword().equals("123456")) {
-			return false;
-		}
 		return true;
 	}
 	

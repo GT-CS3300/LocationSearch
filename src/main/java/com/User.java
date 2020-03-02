@@ -21,6 +21,11 @@ public class User implements Serializable {
 		// TODO the hashing
 		this.hash = password;
 	}
+
+	public User(){
+		this.email = null;
+		this.hash = null;
+	}
 	
 	// Generic Getters and setters
 	public String getEmail() {

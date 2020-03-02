@@ -27,7 +27,7 @@ The general purpose and objective of this project is to develop a website applic
 	}
 ```
 
-returns authentication token to be saved in a cookie
+returns authentication token be sent in subsequent requests as a "Bearer Token" type authentication
 
 ### POST
 ```

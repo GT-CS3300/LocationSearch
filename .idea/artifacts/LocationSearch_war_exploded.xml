@@ -90,6 +90,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: com.vaadin.external.google:android-json:0.0.20131108.vaadin1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -10,7 +10,7 @@ public class LocationSearch {
 		this.setLatitude(latitude);
 		this.setLongitude(longitude);
 		this.setRadius(radius);
-		this.setUser(new User());
+//		this.setUser(new User());
 	}
 	
 	// Setters and getters for user input values, they should already be checked by front-end to be correct format
@@ -48,10 +48,10 @@ public class LocationSearch {
 	
 	/**
 	 * Uses Places API to generated results from the given input values.
-	 * @param latitude input value
-	 * @param longitude input value
-	 * @param radius input value
-	 */
+//	 * @param latitude input value
+//	 * @param longitude input value
+//	 * @param radius input value
+//	 */
 	public String search() {
 		// Use Places API to return a list of places for given input values (JSONObject)
 		
