@@ -92,6 +92,7 @@
 	    <artifactId>spring-boot-starter-web</artifactId>
 	    <version>2.2.0.RELEASE</version>
         <exclusions>
+<!--            Need this removed for mac bois to be able to run springboot locally-->
 <!--        	<exclusion>-->
 <!--          		<groupId>org.springframework.boot</groupId>-->
 <!--          		<artifactId>spring-boot-starter-tomcat</artifactId>-->

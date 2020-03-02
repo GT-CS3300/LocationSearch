@@ -17,7 +17,7 @@ The general purpose and objective of this project is to develop a website applic
 
 #Backend Endpoints
 
-## /login
+## /auth
 ### GET
 
 ```
@@ -29,16 +29,15 @@ login {
 
 returns authentication token to be saved in a cookie
 
-## /signup
 ### POST
 ```
-signup {
-    email: "user@example.com",
-    password: "xxxxxxxxx"
+"signup": {
+    "email": "user@example.com",
+    "password": "xxxxxxxxx"
 	}
 ```
 
-redirects to login page
+Shall redirect to login page
 
 ## /history
 
@@ -49,11 +48,11 @@ history for that user.
 Returns a 400 and a JSON in the format of the JSON below
 
 ```
-searches: {
-  locationSearch{
-    id: (a unique number),
-    lat: (regex),
-    long: (regex)
+"searches": {
+  "locationSearch": {
+    "id": (a unique number),
+    "lat": (regex),
+    "long": (regex)
   }, ...
 }
 
@@ -63,9 +62,9 @@ searches: {
 Must post a singular locationSearch JSON object
 
 ```
-locationSearch {
-  lat: (regex),
-  long:  (regex)
+"locationSearch": {
+  "lat": (regex),
+  "long":  (regex)
 }
 ```
 
@@ -76,3 +75,13 @@ Returns 400 for a successful posting of the specified locationSearch
 
 ### DELETE/{$id}
 Returns 400 for a successful deletion of the specified ID
+
+
+# For our boys on mac who want to use intellij
+
+You're going to need a different SDK than just the generic "gcloud-sdk" which installs on the cli. 
+You need [this](https://cloud.google.com/appengine/docs/standard/java/download)
+Download it and put it somewhere you won't delete it (I suggest /Users/$username/gcloud-sdk/)
+
+Add run configuration in IntelliJ (must be Ultimate)
+         
