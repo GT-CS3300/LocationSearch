@@ -15,13 +15,18 @@ public class Login {
 	 * @return true if email and password are correct, otherwise false
 	 */
 	public boolean verifyPassword() {
+		// TODO: Hard coded values for now, need to change this to database verification
+		if (this.getEmail().equals("mahdi") && this.getPassword().equals("123456")) {
+			return true;
+		}
+		
 		// Get the password associated with the given email from database
 		
 		// If password is correct return true, else return false
 		
 		// If no result is returned from the get password query i.e. email is not in database, also return false 
-
-		return this.getEmail().equals("mahdi") && this.getPassword().equals("123456");
+				
+		return false;
 	}
 	
 	// Getters and Setters for email and password
