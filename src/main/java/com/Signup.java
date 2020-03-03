@@ -28,10 +28,9 @@ public class Signup {
 	 */
 	public boolean storeUser() {
 		// TODO: Hard coded values for now, need to replace this with database verification
-//		if (this.user.getEmail().equals("mahdi") && this.user.getPassword().equals("123456")) {
-//			return false;
-//		}
-
+		if (this.user.getEmail().equals("mahdi@hotmail.com")) {
+			return false;
+    }
 		// Check if user's email is already in database, if so return false
 
 		// Otherwise, connect to database and store user information
