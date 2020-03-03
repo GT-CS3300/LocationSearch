@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Google App Engine Standard Local Server3" type="gcp-app-engine-local-run" factoryName="Local" APPLICATION_SERVER_NAME="Google App Engine Standard Local Server3" ALTERNATIVE_JRE_ENABLED="false">
+    <option name="OPEN_IN_BROWSER" value="false" />
     <server-settings>
       <artifact>LocationSearch:war exploded</artifact>
     </server-settings>

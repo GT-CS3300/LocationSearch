@@ -17,8 +17,8 @@ public class Signup {
 	public boolean createUser(String email, String password, String firstName, String lastName) {
 		// Use User class setters to set user attributes based on value obtained from front-end.
 		this.user.setEmail(email);
-		this.user.setHash(password);
-		
+		this.user.setPassword(password);
+
 		return this.storeUser();
 	}
 	
@@ -26,14 +26,14 @@ public class Signup {
 	 * Tries to store the given user in the database.
 	 * @return true if user was successfully stored, otherwise false
 	 */
-	public boolean storeUser() {	
+	public boolean storeUser() {
 		// TODO: Hard coded values for now, need to replace this with database verification
-		if (this.user.getEmail().equals("mahdi") && this.user.getPassword().equals("123456")) {
-			return false;
-		}
-		
+//		if (this.user.getEmail().equals("mahdi") && this.user.getPassword().equals("123456")) {
+//			return false;
+//		}
+
 		// Check if user's email is already in database, if so return false
-		
+
 		// Otherwise, connect to database and store user information
 		return true;
 	}

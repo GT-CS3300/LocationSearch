@@ -1,7 +1,5 @@
 package com;
 
-import java.nio.file.LinkOption;
-
 public class LocationSearch {
 	private float latitude;
 	private float longitude;
