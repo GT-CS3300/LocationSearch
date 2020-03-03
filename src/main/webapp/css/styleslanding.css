@@ -1,0 +1,218 @@
+html, body {
+    color: white;
+    height: 100%;
+    margin: 0;
+    background-color: black;
+    /* Image attribution to Shutter Shock */
+    background-image : url('../assets/cityscape.jpg');
+    background-size: 2700px 650px;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+.intro {
+    color: white;
+    text-align: center;
+    position: relative; top: 90px;
+    background: rgba(2, 2, 34, 0.6);
+    background-position:center;
+    border-radius:5px;
+
+}
+
+
+.centering-wrapper {
+    display: flex;
+    height: 75%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-elements {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 380px;
+    height: 258px;
+}
+
+.signup-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 380px;
+    height: 438px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+}
+
+.footer-links > a {
+    font-size:20px;
+    text-decoration:none;
+    font-family: "Open Sans";
+    font-weight:bold;
+}
+
+
+/* LocationSearch Page */
+.centering-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    height: 10%;
+}
+
+.input-row > * {
+    margin: 0 4px;
+}
+
+.output-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 90%;
+    align-items: center;
+}
+
+.table-query, .map {
+
+    width: 45%;
+    height: 95%;
+    justify-content: end;
+    background-color: #FFF;
+    overflow:hidden;
+}
+
+.key-row {
+    text-align: left;
+    color:#fff;
+    background:#0096FE;
+    height:60px;
+    justify-content: center;
+}
+
+.key-row > * {
+    margin: auto;
+    font-size: 18px;
+}
+
+
+table {
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    font-family: "Open Sans";
+}
+
+tr {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    height:3em;
+    align-items: center;
+}
+
+td {
+    padding-left: 10px;
+}
+
+td:first-child {
+    padding-left:20px;
+    width: 30%;
+}
+
+td:nth-child(2) {
+    width: 30%;
+}
+
+td:nth-child(3) {
+    width: 10%;
+}
+
+td:nth-child(4) {
+    width: 15%;
+}
+
+td:nth-child(5) {
+    width: 15%;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+/* General object styles */
+.title {
+    position: relative; top: -50px;
+    color: white;
+    font-family:"Chivo";
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+}
+
+input {
+    height: 40px;
+    border: 2px solid #CCC;
+    border-radius:5px;
+    font-size: 18px;
+    padding-left:5px;
+    color:#555;
+    font-family: "Open Sans";
+}
+
+input::placeholder {
+    font-size: 18px;
+    color: #AAA;
+}
+
+input:placeholder-shown {
+    padding-left:5px;
+}
+
+
+
+.submit-button2 {
+    position: relative; top: 130px;
+    height: 45px;
+    width: 185px;
+    background-color:#0096FE;
+    color: white;
+    border:0px;
+    font-size:18px;
+    border-radius:5px;
+}
+
+.submit-button3 {
+    position: relative; top: 140px;
+    height: 45px;
+    width: 185px;
+    background-color:#FFDF00;
+    color: white;
+    border:0px;
+    font-size:18px;
+    border-radius:5px;
+}
+
+.submit-button2:hover {
+    background-color:#0A70BA;
+}
+
+.submit-button3:hover {
+    background-color:#0A70BA;
+}
