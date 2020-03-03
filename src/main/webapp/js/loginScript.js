@@ -7,8 +7,8 @@ $(document).ready(function() {
         var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
         if (emailRegex.test(email) && passwordRegex.test(pwd)) {
 			$.ajax({
-				type: 'POST',
-				url: '/login/verify',
+				type: 'GET',
+				url: '/auth',
 				data: {'Email': email,'Password':pwd },
 				success: function(dataFromServer) {
 					var result = JSON.parse(dataFromServer);
@@ -16,8 +16,12 @@ $(document).ready(function() {
 					if (dataFromServer == "true") {
 						window.location.assign("/html/locationSearchScreen.html"); 
 						console.log("server data success");
+						console.log(result);
+						console.log(dataFromServer);
 					} else {
 						console.log("server data failed");
+						console.log(result);
+						console.log(dataFromServer);
 					}
 				},
 				error: function() {

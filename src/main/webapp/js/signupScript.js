@@ -19,15 +19,20 @@ $(document).ready(function() {
         if (emailRegex.test(email) && passwordRegex.test(pwd) && pwd == pwdConfirm) {
             $.ajax({
                 type: 'POST',
-                url: '/signup/store',
+                url: '/auth',
                 data: {'Email': email,'Password':pwd, 'Firstname': fName, 'Lastname':  lName},
                 success: function(dataFromServer) {
 					var result = JSON.parse(dataFromServer);
+					
 					if (dataFromServer == "true") {
 						window.location.assign("/html/locationSearchScreen.html"); 
 						console.log("server data success");
+						console.log(result);
+						console.log(dataFromServer);
 					} else {
 						console.log("server data failed");
+						console.log(result);
+						console.log(dataFromServer);
 					}
                 },
                 error: function() {
