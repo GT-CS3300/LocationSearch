@@ -23,59 +23,20 @@ $(document).ready(function() {
 		var long = $('#longitude').val();
 		var latVerify = !Number.isNaN(lat) && lat >= -90.0 && lat <= 90.0;
 		var longVerify = !Number.isNaN(long) && long >= -180.0 && long <= 180.00;
+
 		if (latVerify && longVerify) {
-			map.setView([lat, long], 1000);
-			markers.clearLayers();
-			var markerAr = [];
+			map.setView([lat, long], 15);
 
 			var request = {
 				location: new google.maps.LatLng(lat,long),
 				radius: '1000'
 			};			
 
-			var googleMap = new google.maps.Map(document.getElementById('error'), {
-				center: new google.maps.LatLng(lat,long),
-				zoom: 15
-			  });
+			var googleMap = new google.maps.Map(document.getElementById('ignoreDiv'));
 		  
 			service = new google.maps.places.PlacesService(googleMap);
 			service.nearbySearch(request, callback);
 
-			/*$.ajax({
-				type: 'GET',
-				url: urlStr,
-				success: function(dataFromServer) {
-					data = JSON.parse(dataFromServer);
-					console.log(data);
-					console.log(dataFromServer);
-				},
-				error: function() {
-					console.log("Search failed");
-					$(".error-message").text("Search failed to reach server, please try again.");
-					$(".error-message").css("display", "flex");
-				}
-			});
-
-			var tableHTML = $(".key-row")[0].outerHTML;
-			$.each(data.results, function() {
-				var placeLat = this.geometry.location.lat;
-				var placeLong = this.geometry.location.lng;
-				var placeName = this.name;
-				if (this.hasOwnProperty('opening_hours')) {
-					var placeOpen = this.opening_hours.open_now;
-				} else {
-					var placeOpen = '-'
-				}
-				var placeAddress = this.vicinity;
-				var marker = L.marker([placeLat, placeLong]);
-				marker.bindPopup(placeName + "\n" + placeAddress);
-				markerAr.push(marker);
-				var tableRow = "<td>" + placeName + "</td> " + "<td>" + placeAddress + "</td> " + "<td>" + placeOpen + "</td> " + "<td>" + placeLat + "</td> " + "<td>" + placeLong + "</td> ";
-				tableHTML += "<tr>"+tableRow+"</tr>";
-			});
-			markers = L.layerGroup(markerAr).addTo(map);
-			$("#table-id").html(tableHTML);
-			addRows($('.table-query').height(), $("#table-id").height(), $('tr:eq(1)').height());*/
 		} else {
 			console.log("Regex test failed");
 			$(".error-message").text("Your coordinates are invalid.");
@@ -85,7 +46,36 @@ $(document).ready(function() {
 
 	function callback(results, status) {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
-			console.log(results);
+			markers.clearLayers();
+			var markerAr = [];
+			var tableHTML = $(".key-row")[0].outerHTML;
+			var rowCount = 1;
+			$.each(results, function() {
+				if (rowCount < $('tr').length) {
+					var placeLat = this.geometry.location.lat();
+					var placeLong = this.geometry.location.lng();
+					var placeName = this.name;
+					if (this.hasOwnProperty('opening_hours')) {
+						var placeOpen = this.opening_hours.open_now;
+					} else {
+						var placeOpen = '-'
+					}
+					var placeAddress = this.vicinity;
+					var marker = L.marker([placeLat, placeLong]);
+					marker.bindPopup(placeName + "\n" + placeAddress);
+					markerAr.push(marker);
+					var tableRow = "<td>" + placeName + "</td> " + "<td>" + placeAddress + "</td> " + "<td>" + placeOpen + "</td> " + "<td>" + placeLat.toFixed(6) + "</td> " + "<td>" + placeLong.toFixed(6) + "</td> ";
+					tableHTML += "<tr>"+tableRow+"</tr>";
+					rowCount++;
+				}
+			});
+			markers = L.layerGroup(markerAr).addTo(map);
+			$("#table-id").html(tableHTML);
+			addRows($('.table-query').height(), $("#table-id").height(), $('tr:eq(1)').height());
+		} else {
+			console.log("Search failed");
+			$(".error-message").text("Search failed to reach server, please try again.");
+			$(".error-message").css("display", "flex");
 		}
 	}  
 });
