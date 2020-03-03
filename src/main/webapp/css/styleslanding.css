@@ -5,7 +5,7 @@ html, body {
     background-color: black;
     /* Image attribution to Shutter Shock */
     background-image : url('../assets/cityscape.jpg');
-    background-size: 2700px 650px;
+    background-size: 3000px 800px;
     background-repeat:no-repeat;
     background-position:center;
 }
@@ -170,7 +170,7 @@ input {
     height: 40px;
     border: 2px solid #CCC;
     border-radius:5px;
-    font-size: 18px;
+    font-size: 20px;
     padding-left:5px;
     color:#555;
     font-family: "Open Sans";
@@ -191,7 +191,7 @@ input:placeholder-shown {
     position: relative; top: 130px;
     height: 45px;
     width: 185px;
-    background-color:#0096FE;
+    background-color:#0f2dca;
     color: white;
     border:0px;
     font-size:18px;
@@ -202,7 +202,7 @@ input:placeholder-shown {
     position: relative; top: 140px;
     height: 45px;
     width: 185px;
-    background-color:#FFDF00;
+    background-color:#cfb500;
     color: white;
     border:0px;
     font-size:18px;
@@ -210,9 +210,9 @@ input:placeholder-shown {
 }
 
 .submit-button2:hover {
-    background-color:#0A70BA;
+    background-color:#050079;
 }
 
 .submit-button3:hover {
-    background-color:#0A70BA;
+    background-color:#927f00;
 }
