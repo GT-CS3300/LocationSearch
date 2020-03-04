@@ -53,7 +53,7 @@ public class AuthenticationAppEngine {
 			datastore.put(user);
 
 			//return the JSON to the user
-			return kvJSON("Token", uuid);
+			return kvJSON("token", uuid);
 		} else {
 			return "Yeah uhh the server is bad times rn lmao";
 		}
@@ -81,19 +81,30 @@ public class AuthenticationAppEngine {
 		user.setIndexedProperty("authToken", uuid);
 
 		Key bookKey = datastore.put(user); // Save the Entity
-		return kvJSON("Token", uuid);
+		return kvJSON("token", uuid);
 	}
 
 	@PutMapping
 	public String doPut(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body){
 		//Building the query
-//		Filter emailFilter = new FilterPredicate("email", FilterOperator.EQUAL, authingUser.getEmail());
 //		Filter passwordFilter = new FilterPredicate("password", FilterOperator.EQUAL, authingUser.getPassword());
 //		CompositeFilter filter = CompositeFilterOperator.and(emailFilter, passwordFilter);
 //		Query q = new Query(kind).setFilter(filter);
 
+		//check if the authtoken we're provided in the header exists in the DB at all
+		String token = rq.getHeader("Authorization");
 
-		return "";
+		System.out.println("(pre replace) token = '" + token + "'");
+		token = token.replaceAll("^(Bearer )", "");
+		System.out.println("(post replace) token ='" + token + "'");
+
+		Filter tokenFilter = new FilterPredicate("authToken", FilterOperator.EQUAL, token);
+
+		Query q = new Query(kind).setFilter(tokenFilter);
+		List<Entity> results = datastore.prepare(q).asList(FetchOptions.Builder.withDefaults());
+
+		//if so, return true
+		return kvJSON("authorized", results.size() > 0 ? "true" : "false");
 	}
 
 	private boolean emailExists(String email){
