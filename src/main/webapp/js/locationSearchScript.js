@@ -11,15 +11,19 @@ $(document).ready(function() {
 		data: {'authtoken': sessionStorage.LSToken },
 		success: function(dataFromServer) {
 			console.log("auth put succeeded");
-
-			var result = JSON.parse(dataFromServer);
-
-			if (result == false) {
-				//window.location.assign("/html/loginScreen.html"); 
+			console.log(dataFromServer);
+			console.log(dataFromServer.authorized);
+			
+			if (!dataFromServer.authorized) {
+				window.location.assign("/html/loginScreen.html"); 
+				console.log("Auth token not found");
+			} else {
+				console.log("Auth token found");
 			}
 		},
 		error: function() {
-			//window.location.assign("/html/loginScreen.html"); 
+			console.log("auth put failed");
+			window.location.assign("/html/loginScreen.html"); 
 		}
 	});
 

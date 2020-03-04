@@ -39,6 +39,14 @@ returns authentication token be sent in subsequent requests as a "Bearer Token" 
 
 Shall return a 400 on complete signup, along with returning authentication token redirect to login page
 
+### PUT
+```
+{
+  "token": "xxxxxxxxx"  
+}
+```
+Shall return a json with 'authorized' object that is true or false depending on whether auth token exists or not
+
 ## /history
 
 ### GET
