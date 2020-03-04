@@ -46,7 +46,6 @@
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java-util:3.11.0" />
           <element id="library" level="project" name="Maven: com.google.errorprone:error_prone_annotations:2.3.3" />
           <element id="library" level="project" name="Maven: com.google.api-client:google-api-client:1.30.7" />
-          <element id="library" level="project" name="Maven: com.google.oauth-client:google-oauth-client:1.30.5" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:28.1-android" />
           <element id="library" level="project" name="Maven: com.google.guava:failureaccess:1.0.1" />
           <element id="library" level="project" name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" />
@@ -87,6 +86,16 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: com.vaadin.external.google:android-json:0.0.20131108.vaadin1" />
+          <element id="library" level="project" name="Maven: com.google.cloud:google-cloud-datastore:1.102.0" />
+          <element id="library" level="project" name="Maven: com.google.api.grpc:proto-google-cloud-datastore-v1:0.85.0" />
+          <element id="library" level="project" name="Maven: com.google.cloud.datastore:datastore-v1-proto-client:1.6.3" />
+          <element id="library" level="project" name="Maven: com.google.http-client:google-http-client-protobuf:1.33.0" />
+          <element id="library" level="project" name="Maven: com.google.oauth-client:google-oauth-client:1.30.4" />
+          <element id="library" level="project" name="Maven: io.grpc:grpc-core:1.25.0" />
+          <element id="library" level="project" name="Maven: io.grpc:grpc-api:1.27.0" />
+          <element id="library" level="project" name="Maven: com.google.android:annotations:4.1.1.4" />
+          <element id="library" level="project" name="Maven: io.perfmark:perfmark-api:0.19.0" />
+          <element id="library" level="project" name="Maven: io.opencensus:opencensus-contrib-grpc-metrics:0.21.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -1,8 +1,7 @@
 package com;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
+import com.google.cloud.datastore.Datastore;
+import com.google.cloud.datastore.DatastoreOptions;
 import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +15,8 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationAppEngine {
-	private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	private Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+	private Gson gson = new Gson();
 
 
 	/**
@@ -48,10 +48,10 @@ public class AuthenticationAppEngine {
 
 		System.out.println("newUser = " + newUser);
 
-		Entity userEntity = new Entity("User");
-		userEntity.setProperty("email", newUser.getEmail());
-		userEntity.setProperty("hash", newUser.getPassword()); // use PBKDF2 to hash and salt the passkey
-		datastore.put(userEntity);
+//		Entity userEntity = new Entity("User");
+//		userEntity.setProperty("email", newUser.getEmail());
+//		userEntity.setProperty("hash", newUser.getPassword()); // use PBKDF2 to hash and salt the passkey
+//		datastore.put(userEntity);
 
 		return gson.toJson(newUser);
 
