@@ -46,6 +46,7 @@ $(document).ready(function() {
 
 	function callback(results, status) {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
+			$(".error-message").css("display", "none");
 			markers.clearLayers();
 			var markerAr = [];
 			var tableHTML = $(".key-row")[0].outerHTML;
@@ -72,6 +73,11 @@ $(document).ready(function() {
 			markers = L.layerGroup(markerAr).addTo(map);
 			$("#table-id").html(tableHTML);
 			addRows($('.table-query').height(), $("#table-id").height(), $('tr:eq(1)').height());
+		} else if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+			console.log("Search had no results");
+			$(".error-message").text("Search returned no nearby results.");
+			$(".error-message").css("display", "flex");
+			
 		} else {
 			console.log("Search failed");
 			$(".error-message").text("Search failed to reach server, please try again.");
