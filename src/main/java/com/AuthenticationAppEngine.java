@@ -24,9 +24,7 @@ public class AuthenticationAppEngine {
 	private static String kind = "user";
 
 	@GetMapping
-	public String goodByeGet(HttpServletRequest request, @RequestBody String body) {
-		User authingUser = gson.fromJson(body, User.class);
-		
+	public String goodByeGet(HttpServletRequest request) {
 		String email = request.getHeader("email");
 		String password = request.getHeader("password");
 
