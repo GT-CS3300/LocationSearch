@@ -24,7 +24,7 @@ public class HistoryAppEngine {
 	private static String user = "user";
 
 	@GetMapping()
-	public String getMePlease(HttpServletRequest request, HttpServletResponse response, @RequestBody String body) throws JSONException {
+	public String getMePlease(HttpServletRequest request, HttpServletResponse response) throws JSONException {
 		//get user Key from authtoken
 		//get the authtoken from the header
 		String token = request.getHeader("Authorization");
@@ -111,8 +111,8 @@ public class HistoryAppEngine {
 			//make a history row
 			Entity history = new Entity(kind);  // Key will be assigned once written
 			history.setIndexedProperty("userKey", userKey);
-			history.setProperty("lat", row.getLatitude());
-			history.setProperty("lon", row.getLongitude());
+			history.setProperty("latitude", row.getLatitude());
+			history.setProperty("longitude", row.getLongitude());
 			datastore.put(history); // commit it
 		} else {
 			response.setStatus(500);
