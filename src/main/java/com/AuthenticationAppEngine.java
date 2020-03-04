@@ -1,12 +1,10 @@
 package com;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.*;
+import com.google.appengine.api.datastore.Query.*;
 
-
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
 import com.google.gson.Gson;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/auth")
@@ -23,45 +23,48 @@ public class AuthenticationAppEngine {
 	private Gson gson = new Gson();
 	private static String kind = "user";
 
-
-	/**
-	 * @param rq - The request
-	 * @param rp - The response
-	 * @return The JSON string to be passed to the frontend
-	 * @throws IOException - In the case of malformed JSON
-	 * @author mransby3
-	 */
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String goodByeGet(HttpServletRequest rq, HttpServletResponse rp) throws IOException, JSONException {
-
-		String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXBkYXRlZEF0IjoiMjAyMC0wMi0yMVQxNjo1MToyMC44NzFaIiwiY3JlYXRlZEF0IjoiMjAyMC0wMi0yMVQxNjo1MToyMC44NzFaIiwiaWF0IjoxNTgyMzAzODgwLCJleHAiOjE1ODI5MDg2ODB9.CfqN2kPmczXtY98z23yNPFQISSVabbm6LYo2EIqA_Fs";
-		JSONObject json = new JSONObject().put("Token", token);
-		return json.toString();
+	@GetMapping
+	public String goodByeGet(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body) throws IOException, JSONException {
+		//check that the email/password match
+		//make a new authtoken, update that row
+		//return the authtoken to frontend
+		return "unimplemented sozz";
 	}
 
-	/**
-	 * @param rq - All of the attributes sent with the request
-	 * @param rp - the response
-	 * @return The JSON string to be passed to the frontend
-	 * @throws IOException - In the case of malformed JSON
-	 * @author mransby3
-	 */
-	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String doPost(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body) throws IOException, JSONException {
-		Gson gson = new Gson();
+	@PostMapping
+	public String doPost(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body) throws JSONException {
 		User newUser = gson.fromJson(body, User.class);
+		String uuid = getUUID();
 
 		System.out.println("newUser = " + newUser);
 
-		Entity incBookEntity = new Entity(kind);  // Key will be assigned once written
-		incBookEntity.setProperty("email", newUser.getEmail());
+		//TODO Check if the user already exists in the Datastore
+
+		Entity user = new Entity(kind);  // Key will be assigned once written
+		user.setProperty("email", newUser.getEmail());
+		user.setProperty("password", newUser.getPassword());
+		user.setIndexedProperty("authToken", uuid);
+
+		Key bookKey = datastore.put(user); // Save the Entity
 
 
-		Key bookKey = datastore.put(incBookEntity); // Save the Entity
+		return "{ \n  \"Token\": \"" + uuid + "\"\n}";
 
+	}
 
-		return gson.toJson(newUser);
+	private boolean emailExists(String email){
+		Filter emailEqualFilter =
+				new FilterPredicate("email", FilterOperator.EQUAL, email);
+		Query emailEqualQuery = new Query(kind).setFilter(emailEqualFilter);
 
+		List<Entity> results = datastore.prepare(emailEqualQuery).asList(FetchOptions.Builder.withDefaults());
+
+		System.out.println(results.size() + " results = \n" + results);
+		return results.size() > 0;
+	}
+
+	public static String getUUID(){
+		return UUID.randomUUID().toString();
 	}
 
 
