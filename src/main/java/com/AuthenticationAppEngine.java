@@ -86,7 +86,7 @@ public class AuthenticationAppEngine {
 	}
 
 	@PutMapping
-	public String doPut(HttpServletRequest rq, @RequestBody String body){
+	public String doPut(HttpServletRequest rq){
 		//check if the authtoken we're provided in the header exists in the DB at all
 		String token = rq.getHeader("Authorization");
 
