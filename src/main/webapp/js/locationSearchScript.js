@@ -11,9 +11,7 @@ $(document).ready(function() {
 		'dataType': 'json',
 		processData: false,
 		'contentType': 'application/json',
-		'data':JSON.stringify({
-			"token":sessionStorage.LSToken
-		 }),
+		headers: {"Authorization": sessionStorage.LSToken},
 		success: function(dataFromServer) {
 			console.log("auth put succeeded");
 			console.log(dataFromServer);
@@ -78,8 +76,8 @@ $(document).ready(function() {
 				'dataType': 'json',
 				processData: false,
 				'contentType': 'application/json',
+				headers: {"Authorization": sessionStorage.LSToken},
 				'data':JSON.stringify({
-					"token":sessionStorage.LSToken,
 					"lat":lat,
 					"long":long
 				 }),
@@ -223,7 +221,7 @@ function updateHistoryButtons() {
 		'dataType': 'json',
 		processData: false,
 		'contentType': 'application/json',
-		headers: {"token": sessionStorage.LSToken},
+		headers: {"Authorization": sessionStorage.LSToken},
 		success: function(dataFromServer) {
 			console.log("History get succeeded");
 
