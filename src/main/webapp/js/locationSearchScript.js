@@ -228,30 +228,22 @@ function updateHistoryButtons() {
 		 }),
 		success: function(dataFromServer) {
 			console.log("History get succeeded");
+			console.log(dataFromServer);
 
-			var result = JSON.parse(dataFromServer);
-
-			if (Object.keys(result).length < 6) {
-				var counter = 0;
-				$('.coords-button').each(function( button ) {
-					if (counter < Object.keys(result).length) {
-						$( this ).text("51.5,0.0");
-						$( this ).css("display", "inline");
-						counter++;
-					}
-				});
-			} else {
-				var counter = 0;
-				while (counter < Object.keys(result).length) {
-					$('.coords-button').each(function( button ) {
-						if (counter < Object.keys(result).length) {
-							$( this ).text("51.5,0.0");
-							$( this ).css("display", "inline");
-							counter++;
-						}
-					});
-				}
+			var historyAr = [];
+			for(var i = Math.max(dataFromServer.length - 5, 0); i < dataFromServer.length; i++) {
+				var historyElem = [dataFromServer[i].lat, dataFromServer[i].long];
+				historyAr.push(historyElem);
 			}
+
+			var count = 0;
+			$('.coords-button').each(function( button ) {
+				if (count < historyAr.length) {
+					$( this ).text(historyAr[i][0] + ", " + historyAr[i][1]);
+					$( this ).css("display", "inline");
+					count++;
+				}
+			});
 		},
 		error: function() {
 			console.log("History get failed");
