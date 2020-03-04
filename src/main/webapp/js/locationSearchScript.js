@@ -126,7 +126,7 @@ $(document).ready(function() {
 
 		} else {
 			console.log("Regex test failed");
-			$(".error-message").text("Your coordinates are invalid.");
+			$(".error-message").text("Invalid Coordinates.");
 			$(".error-message").css("display", "flex");
 		}
 	});
@@ -181,12 +181,12 @@ $(document).ready(function() {
 			addRows($('.table-query').height(), $("#table-id").height(), $('tr:eq(1)').height());
 		} else if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
 			console.log("Search had no results");
-			$(".error-message").text("Search returned no nearby results.");
+			$(".error-message").text("No results.");
 			$(".error-message").css("display", "flex");
 			
 		} else {
 			console.log("Search failed");
-			$(".error-message").text("Search failed to reach server, please try again.");
+			$(".error-message").text("Search failed.");
 			$(".error-message").css("display", "flex");
 		}
 	}  
@@ -228,18 +228,16 @@ function updateHistoryButtons() {
 		 }),
 		success: function(dataFromServer) {
 			console.log("History get succeeded");
-			console.log(dataFromServer);
 
 			var historyAr = [];
 			for(var i = Math.max(dataFromServer.length - 5, 0); i < dataFromServer.length; i++) {
 				var historyElem = [dataFromServer[i].lat, dataFromServer[i].long];
 				historyAr.push(historyElem);
 			}
-
 			var count = 0;
 			$('.coords-button').each(function( button ) {
 				if (count < historyAr.length) {
-					$( this ).text(historyAr[i][0] + ", " + historyAr[i][1]);
+					$( this ).text(historyAr[count][0] + ", " + historyAr[count][1]);
 					$( this ).css("display", "inline");
 					count++;
 				}
