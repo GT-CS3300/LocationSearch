@@ -30,9 +30,9 @@ public class HistoryAppEngine {
 		String token = request.getHeader("Authorization");
 
 		//remove that bearer shit
-		System.out.println("(pre replace) token = '" + token + "'");
+//		System.out.println("(pre replace) token = '" + token + "'");
 		token = token.replaceAll("^(Bearer )", "");
-		System.out.println("(post replace) token ='" + token + "'");
+		System.out.println("token ='" + token + "'");
 
 		//Build a query
 		Query q = new Query(user).setFilter(new FilterPredicate("authToken", FilterOperator.EQUAL, token));
@@ -50,19 +50,27 @@ public class HistoryAppEngine {
 		if (results.size() == 1){
 			//get the user
 			Entity user = results.get(0);
+			System.out.println("user = " + user);
 			//get their key
-			Key userKey = user.getKey();
+			String userKey = user.getKey().toString();
+			System.out.println("userKey = " + userKey);
 
 			//do a query to find all the rows with information
-			Query historyQuery = new Query(kind).setFilter(new FilterPredicate("userKey", FilterOperator.EQUAL, userKey));
+//			Query historyQuery = new Query("history").setFilter(new FilterPredicate("userKey", FilterOperator.EQUAL, userKey));
+			Query historyQuery = new Query("history");
 			List<Entity> historicalResults = datastore.prepare(historyQuery).asList(FetchOptions.Builder.withDefaults());
+
+			System.out.println("historicalResults = " + historicalResults);
 
 			JSONArray arr = new JSONArray();
 			for (Entity historicalResult : historicalResults) {
-				JSONObject location = new JSONObject();
-				location.put("latitude", historicalResult.getProperty("latitude"));
-				location.put("longitude", historicalResult.getProperty("longitude"));
-				arr.put(location);
+				if (historicalResult.getProperty("userKey").toString().equals(userKey)){
+					JSONObject location = new JSONObject();
+					location.put("latitude", historicalResult.getProperty("latitude"));
+					location.put("longitude", historicalResult.getProperty("longitude"));
+					arr.put(location);
+
+				}
 			}
 
 
