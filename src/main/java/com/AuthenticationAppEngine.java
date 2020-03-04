@@ -24,7 +24,7 @@ public class AuthenticationAppEngine {
 	private static String kind = "user";
 
 	@GetMapping
-	public String goodByeGet(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body) throws IOException, JSONException {
+	public String goodByeGet(@RequestBody String body) {
 		User authingUser = gson.fromJson(body, User.class);
 
 		//check that the email/password match
@@ -65,7 +65,7 @@ public class AuthenticationAppEngine {
 	}
 
 	@PostMapping
-	public String doPost(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body) throws JSONException {
+	public String doPost(@RequestBody String body)  {
 		System.out.println("POST - BODY\n" + body);
 
 		User newUser = gson.fromJson(body, User.class);
@@ -85,14 +85,13 @@ public class AuthenticationAppEngine {
 	}
 
 	@PutMapping
-	public String doPut(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body){
-		//Building the query
-//		Filter passwordFilter = new FilterPredicate("password", FilterOperator.EQUAL, authingUser.getPassword());
-//		CompositeFilter filter = CompositeFilterOperator.and(emailFilter, passwordFilter);
-//		Query q = new Query(kind).setFilter(filter);
-
+	public String doPut(HttpServletRequest rq, @RequestBody String body){
 		//check if the authtoken we're provided in the header exists in the DB at all
 		String token = rq.getHeader("Authorization");
+
+		if (token == null){
+			return kvJSON("authorized", "false");
+		}
 
 		System.out.println("(pre replace) token = '" + token + "'");
 		token = token.replaceAll("^(Bearer )", "");
@@ -104,14 +103,13 @@ public class AuthenticationAppEngine {
 		List<Entity> results = datastore.prepare(q).asList(FetchOptions.Builder.withDefaults());
 
 		//if so, return true
-		return kvJSON("authorized", results.size() > 0 ? "true" : "false");
+		return kvJSON("authorized", !results.isEmpty() ? "true" : "false");
 	}
 
 	private boolean emailExists(String email){
 		Filter emailEqualFilter =
 				new FilterPredicate("email", FilterOperator.EQUAL, email);
 		Query emailEqualQuery = new Query(kind).setFilter(emailEqualFilter);
-
 		List<Entity> results = datastore.prepare(emailEqualQuery).asList(FetchOptions.Builder.withDefaults());
 
 		System.out.println(results.size() + " results = \n" + results);
