@@ -7,9 +7,15 @@ $(document).ready(function() {
         var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
         if (emailRegex.test(email) && passwordRegex.test(pwd)) {
 			$.ajax({
-				type: 'GET',
-				url: '/auth',
-				data: {'Email': email,'Password':pwd },
+                type: 'GET',
+                url: '/auth',
+                'dataType': 'json',
+                processData: false,
+                'contentType': 'application/json',
+                'data':JSON.stringify({
+                    "email":email,
+                    "password":pwd
+                 }),
 				success: function(dataFromServer) {
                     console.log(dataFromServer);
                     console.log(dataFromServer.token);

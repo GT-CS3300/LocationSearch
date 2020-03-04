@@ -20,7 +20,6 @@ $(document).ready(function() {
             $.ajax({
                 type: 'POST',
                 url: '/auth',
-                data: {'email': email,'password':pwd},
                 'dataType': 'json',
                 processData: false,
                 'contentType': 'application/json',
