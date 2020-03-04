@@ -4,6 +4,11 @@ var curLong;
 var searchMarkIcon = L.icon({iconUrl:'../assets/marker-icon.png',iconSize: [52, 52]});
 
 $(document).ready(function() {
+
+	if (sessionStorage.LSToken != "TokenSuccess") {
+		window.location.assign("/html/loginScreen.html"); 
+	}
+
 	// Map initalization for LocationSearchPage
 	var map = L.map('mapid').setView([33.7490, -84.3880], 13);
 

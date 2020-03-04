@@ -23,6 +23,7 @@ $(document).ready(function() {
                 data: {'Email': email,'Password':pwd, 'Firstname': fName, 'Lastname':  lName},
                 success: function(dataFromServer) {
 					var result = JSON.parse(dataFromServer);
+					sessionStorage.LSToken = "TokenFailure";
 					
 					if (dataFromServer == "true") {
 						window.location.assign("/html/locationSearchScreen.html"); 
