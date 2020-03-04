@@ -28,11 +28,14 @@ public class HistoryAppEngine {
 		//get user Key from authtoken
 		//get the authtoken from the header
 		String token = request.getHeader("Authorization");
+		System.out.println("token = " + token);
 
 		//remove that bearer shit
 //		System.out.println("(pre replace) token = '" + token + "'");
-		token = token.replaceAll("^(Bearer )", "");
-		System.out.println("token ='" + token + "'");
+		if (token.matches("^(Bearer )")){
+			token = token.replaceAll("^(Bearer )", "");
+			System.out.println("token ='" + token + "'");
+		}
 
 		//Build a query
 		Query q = new Query(user).setFilter(new FilterPredicate("authToken", FilterOperator.EQUAL, token));
@@ -70,6 +73,7 @@ public class HistoryAppEngine {
 					location.put("longitude", historicalResult.getProperty("longitude"));
 					arr.put(location);
 
+
 				}
 			}
 
@@ -88,11 +92,14 @@ public class HistoryAppEngine {
 		//get user Key from authtoken
 		//get the authtoken from the header
 		String token = request.getHeader("Authorization");
+		System.out.println("token = " + token);
 
 		//remove that bearer shit
-		System.out.println("(pre replace) token = '" + token + "'");
-		token = token.replaceAll("^(Bearer )", "");
-		System.out.println("(post replace) token ='" + token + "'");
+
+		if (token.matches("^(Bearer )")){
+			token = token.replaceAll("^(Bearer )", "");
+			System.out.println("(post replace) token ='" + token + "'");
+		}
 
 		//Build a query
 		Query q = new Query(user).setFilter(new FilterPredicate("authToken", FilterOperator.EQUAL, token));
