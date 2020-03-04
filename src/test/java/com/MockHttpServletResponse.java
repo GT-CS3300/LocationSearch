@@ -177,11 +177,6 @@ class MockHttpServletResponse implements HttpServletResponse {
   public void setStatus(int statusCode, String message) {
   }
 
-  // Servlet API 3.0 and 3.1 methods
-  @Override
-  public void setContentLengthLong(long length) {
-  }
-
   @Override
   public int getStatus() {
     return 0;

@@ -45,7 +45,7 @@ Shall return a 400 on complete signup, along with returning authentication token
 Doesn't need any input, gets user ID from authenticationToken and returns
 history for that user.
 
-Returns a 400 and a JSON in the format of the JSON below
+Returns a 400 and a JSON in the format of the JSON below (200 in the case of no history)
 
 ```
 "searches": {
@@ -77,7 +77,7 @@ Returns 400 for a successful posting of the specified locationSearch
 Returns 400 for a successful deletion of the specified ID
 
 
-# For our boys on mac who want to use intellij
+### For our boys on mac who want to use intellij
 
 You're going to need a different SDK than just the generic "gcloud-sdk" which installs on the cli. 
 You need [this](https://cloud.google.com/appengine/docs/standard/java/download)
