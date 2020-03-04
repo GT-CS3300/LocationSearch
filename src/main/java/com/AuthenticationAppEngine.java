@@ -25,10 +25,43 @@ public class AuthenticationAppEngine {
 
 	@GetMapping
 	public String goodByeGet(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body) throws IOException, JSONException {
+		User authingUser = gson.fromJson(body, User.class);
+
 		//check that the email/password match
+		//Building the query
+		Filter emailFilter = new FilterPredicate("email", FilterOperator.EQUAL, authingUser.getEmail());
+		Filter passwordFilter = new FilterPredicate("password", FilterOperator.EQUAL, authingUser.getPassword());
+		CompositeFilter filter = CompositeFilterOperator.and(emailFilter, passwordFilter);
+		Query q = new Query(kind).setFilter(filter);
+
+		//run the query
+		List<Entity> results = datastore.prepare(q).asList(FetchOptions.Builder.withDefaults());
+
+		//it had better be just one result
+		if (results.size() == 0){
+			//If there's no user, there's nothing to give.
+			return "";
+		} else if (results.size() == 1){
+			//if there is exactly one user, we will give them their authtoken :)
+
+			//make a new uuid
+			String uuid = getUUID();
+			//commit to DB
+			Entity user = results.get(0);
+			user.setIndexedProperty("authToken", uuid);
+			//put is equivalent to an update AND new for some reason...
+			datastore.put(user);
+
+			//return the JSON to the user
+			return kvJSON("Token", uuid);
+		} else {
+			return "Yeah uhh the server is bad times rn lmao";
+		}
+
+//		System.out.println(results.size() + " results = \n" + results);
 		//make a new authtoken, update that row
 		//return the authtoken to frontend
-		return "unimplemented sozz";
+//		return "unimplemented sozz";
 	}
 
 	@PostMapping
@@ -48,7 +81,7 @@ public class AuthenticationAppEngine {
 		Key bookKey = datastore.put(user); // Save the Entity
 
 
-		return "{ \n  \"Token\": \"" + uuid + "\"\n}";
+		return kvJSON("Token", uuid);
 
 	}
 
@@ -65,6 +98,10 @@ public class AuthenticationAppEngine {
 
 	public static String getUUID(){
 		return UUID.randomUUID().toString();
+	}
+
+	public static String kvJSON(String key, String value){
+		return "{ \n  \"" + key + "\": \"" + value + "\"\n}";
 	}
 
 
