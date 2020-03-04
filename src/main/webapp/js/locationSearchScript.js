@@ -1,4 +1,31 @@
+var curLat;
+var curLong;
+
+var searchMarkIcon = L.icon({iconUrl:'../assets/marker-icon.png',iconSize: [52, 52]});
+
 $(document).ready(function() {
+
+	$.ajax({
+		type: 'PUT',
+		url: '/auth',
+		data: {'authtoken': sessionStorage.LSToken },
+		success: function(dataFromServer) {
+			console.log("auth put succeeded");
+
+			var result = JSON.parse(dataFromServer);
+
+			if (result == false) {
+				//window.location.assign("/html/loginScreen.html"); 
+			}
+		},
+		error: function() {
+			//window.location.assign("/html/loginScreen.html"); 
+		}
+	});
+
+
+	updateHistoryButtons();
+
 	// Map initalization for LocationSearchPage
 	var map = L.map('mapid').setView([33.7490, -84.3880], 13);
 
@@ -19,8 +46,11 @@ $(document).ready(function() {
 
 	var markers = L.layerGroup();	
 	$('#search').click(function() {
+		
 		var lat = $('#latitude').val();
+		curLat = lat;
 		var long = $('#longitude').val();
+		curLong = long;
 		var latVerify = !Number.isNaN(lat) && lat >= -90.0 && lat <= 90.0;
 		var longVerify = !Number.isNaN(long) && long >= -180.0 && long <= 180.00;
 
@@ -31,7 +61,22 @@ $(document).ready(function() {
 		var keyVerify = key.length > 0 && key.length < 12;
 
 		if (latVerify && longVerify) {
-			map.setView([lat, long], 15);
+
+			// updating user history
+			$.ajax({
+				type: 'POST',
+				url: '/history',
+				data: {'Lat': lat,'Long':long },
+				success: function(dataFromServer) {
+					console.log("History post success");
+				},
+				error: function() {
+					console.log("History post failed");
+				}
+			});
+
+			updateHistoryButtons();
+
 
 			var request;
 			if (!keyVerify && !radVerify) {
@@ -70,11 +115,29 @@ $(document).ready(function() {
 		}
 	});
 
+	$('.coords-button').click(function() {
+		var coords = $(this).text(); 
+		var coordsAr = coords.split(",").map(function(elem) {
+			return elem.trim();
+		});
+
+		var lat = coordsAr[0];
+		var long = coordsAr[1];
+
+		$('#latitude').val(lat);
+		$('#longitude').val(long);
+		$('#radius').val('');
+		$('#keyword').val('');
+		$('#search').click();
+	});
+
 	function callback(results, status) {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
 			$(".error-message").css("display", "none");
 			markers.clearLayers();
 			var markerAr = [];
+			var curLocation = L.marker([curLat,curLong], {icon: searchMarkIcon});
+			markerAr.push(curLocation);
 			var tableHTML = $(".key-row")[0].outerHTML;
 			var rowCount = 1;
 			$.each(results, function() {
@@ -97,6 +160,7 @@ $(document).ready(function() {
 				}
 			});
 			markers = L.layerGroup(markerAr).addTo(map);
+			map.fitBounds(new L.featureGroup(markerAr).getBounds().pad(0.5));
 			$("#table-id").html(tableHTML);
 			addRows($('.table-query').height(), $("#table-id").height(), $('tr:eq(1)').height());
 		} else if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
@@ -134,4 +198,42 @@ function addRows(maxHeight, curHeight, rowHeight) {
 	} else {
 		$("tr:even").not(":first").css("background-color", "#f5f5f5");
 	}
+}
+
+function updateHistoryButtons() {
+	$.ajax({
+		type: 'GET',
+		url: '/history',
+		data: {'authtoken': sessionStorage.LSToken },
+		success: function(dataFromServer) {
+			console.log("History get succeeded");
+
+			var result = JSON.parse(dataFromServer);
+
+			if (Object.keys(result).length < 6) {
+				var counter = 0;
+				$('.coords-button').each(function( button ) {
+					if (counter < Object.keys(result).length) {
+						$( this ).text("51.5,0.0");
+						$( this ).css("display", "inline");
+						counter++;
+					}
+				});
+			} else {
+				var counter = 0;
+				while (counter < Object.keys(result).length) {
+					$('.coords-button').each(function( button ) {
+						if (counter < Object.keys(result).length) {
+							$( this ).text("51.5,0.0");
+							$( this ).css("display", "inline");
+							counter++;
+						}
+					});
+				}
+			}
+		},
+		error: function() {
+			console.log("History get failed");
+		}
+	});
 }

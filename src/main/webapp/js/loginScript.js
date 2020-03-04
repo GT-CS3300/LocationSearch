@@ -12,6 +12,7 @@ $(document).ready(function() {
 				data: {'Email': email,'Password':pwd },
 				success: function(dataFromServer) {
 					var result = JSON.parse(dataFromServer);
+					sessionStorage.LSToken = "TokenSuccess";
 					
 					if (dataFromServer == "true") {
 						window.location.assign("/html/locationSearchScreen.html"); 
