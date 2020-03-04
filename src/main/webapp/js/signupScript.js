@@ -22,7 +22,10 @@ $(document).ready(function() {
                 url: '/auth',
 <<<<<<< Updated upstream
                 data: {'email': email,'password':pwd},
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 017d5621799980c929fa9a52b4a049dc70327c1f
                 'dataType': 'json',
                 processData: false,
                 'contentType': 'application/json',
@@ -30,7 +33,10 @@ $(document).ready(function() {
                     "email":email,
                     "password":pwd
                  }),
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 017d5621799980c929fa9a52b4a049dc70327c1f
                 success: function(dataFromServer) {
 					var result = JSON.parse(dataFromServer);
 					sessionStorage.LSToken = "TokenFailure";
