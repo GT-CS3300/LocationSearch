@@ -66,6 +66,8 @@ public class AuthenticationAppEngine {
 
 	@PostMapping
 	public String doPost(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body) throws JSONException {
+		System.out.println("POST - BODY\n" + body);
+
 		User newUser = gson.fromJson(body, User.class);
 		String uuid = getUUID();
 
@@ -79,10 +81,19 @@ public class AuthenticationAppEngine {
 		user.setIndexedProperty("authToken", uuid);
 
 		Key bookKey = datastore.put(user); // Save the Entity
-
-
 		return kvJSON("Token", uuid);
+	}
 
+	@PutMapping
+	public String doPut(HttpServletRequest rq, HttpServletResponse rp, @RequestBody String body){
+		//Building the query
+//		Filter emailFilter = new FilterPredicate("email", FilterOperator.EQUAL, authingUser.getEmail());
+//		Filter passwordFilter = new FilterPredicate("password", FilterOperator.EQUAL, authingUser.getPassword());
+//		CompositeFilter filter = CompositeFilterOperator.and(emailFilter, passwordFilter);
+//		Query q = new Query(kind).setFilter(filter);
+
+
+		return "";
 	}
 
 	private boolean emailExists(String email){
