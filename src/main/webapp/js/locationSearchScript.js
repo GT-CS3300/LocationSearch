@@ -24,13 +24,39 @@ $(document).ready(function() {
 		var latVerify = !Number.isNaN(lat) && lat >= -90.0 && lat <= 90.0;
 		var longVerify = !Number.isNaN(long) && long >= -180.0 && long <= 180.00;
 
+		var rad = $('#radius').val();
+		var radVerify = !Number.isNaN(rad) && rad >= 500 && rad <= 10000;
+
+		var key = $('#keyword').val();
+		var keyVerify = key.length > 0 && key.length < 12;
+
 		if (latVerify && longVerify) {
 			map.setView([lat, long], 15);
 
-			var request = {
-				location: new google.maps.LatLng(lat,long),
-				radius: '1000'
-			};			
+			var request;
+			if (!keyVerify && !radVerify) {
+				request = {
+					location: new google.maps.LatLng(lat,long),
+					radius: '1000'
+				};			
+			} else if (radVerify && !keyVerify) {
+				request = {
+					location: new google.maps.LatLng(lat,long),
+					radius: rad
+				};			
+			} else if (!radVerify && keyVerify) {
+				request = {
+					location: new google.maps.LatLng(lat,long),
+					radius: '1000',
+					keyword: key
+				};			
+			} else {
+				request = {
+					location: new google.maps.LatLng(lat,long),
+					radius: rad,
+					keyword: key
+				};			
+			}
 
 			var googleMap = new google.maps.Map(document.getElementById('ignoreDiv'));
 		  

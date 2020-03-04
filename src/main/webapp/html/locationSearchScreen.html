@@ -4,13 +4,13 @@
   	<meta charset="utf-8"/>
     <!-- Image attribution to Dapple Designers on Pixabay -->
     <link href='https://fonts.googleapis.com/css?family=Chivo' rel='stylesheet'>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="../css/styles.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/leaflet.css">
     <script src="../js/leaflet.js"></script>
     <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../js/locationSearchScript.js"></script>
-    <script type="text/javascript" src=""></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7OufUUgq6MVIdBxeOSsSjbj8KCtrDhQU&libraries=places"></script>
   </head>
   <title>LocationSearch</title>
   <body>
@@ -20,6 +20,8 @@
         <div class="title">LocationSearch</div>
         <input type="text" id="latitude" placeholder="Latitude" />
         <input type="text" id="longitude" placeholder="Longitude" />
+        <input type="text" id="radius" placeholder="Radius (Optional)" />
+        <input type="text" id="keyword" placeholder="Keyword (Optional)" />
         <button id="search" class="submit-button">Search</button>
         <div class="error-message" id="error"></div>
       </div>
