@@ -78,8 +78,8 @@ $(document).ready(function() {
 				'contentType': 'application/json',
 				headers: {"Authorization": sessionStorage.LSToken},
 				'data':JSON.stringify({
-					"lat":lat,
-					"long":long
+					"latitude":lat,
+					"longitude":long
 				 }),
 				success: function(dataFromServer) {
 					console.log("History post success");
