@@ -19,7 +19,7 @@ $(document).ready(function() {
 			console.log(dataFromServer);
 			console.log(dataFromServer.authorized);
 			
-			if (!dataFromServer.authorized) {
+			if (dataFromServer.authorized == false) {
 				window.location.assign("/html/loginScreen.html"); 
 				console.log("Auth token not found");
 			} else {
