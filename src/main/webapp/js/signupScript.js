@@ -20,7 +20,7 @@ $(document).ready(function() {
             $.ajax({
                 type: 'POST',
                 url: '/auth',
-                data: {'Email': email,'Password':pwd, 'Firstname': fName, 'Lastname':  lName},
+                data: {'email': email,'password':pwd},
                 success: function(dataFromServer) {
 					var result = JSON.parse(dataFromServer);
 					sessionStorage.LSToken = "TokenFailure";
