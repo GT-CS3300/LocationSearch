@@ -227,7 +227,7 @@ function updateHistoryButtons() {
 
 			var historyAr = [];
 			for(var i = Math.max(dataFromServer.length - 5, 0); i < dataFromServer.length; i++) {
-				var historyElem = [dataFromServer[i].lat, dataFromServer[i].long];
+				var historyElem = [dataFromServer[i].latitude, dataFromServer[i].longitude];
 				historyAr.push(historyElem);
 			}
 			var count = 0;
