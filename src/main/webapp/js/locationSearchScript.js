@@ -18,7 +18,7 @@ $(document).ready(function() {
 			console.log(dataFromServer.authorized);
 			
 			if (dataFromServer.authorized == false) {
-				// window.location.assign("/html/loginScreen.html");
+				window.location.assign("/html/loginScreen.html");
 				console.log("Auth token not found");
 			} else {
 				console.log("Auth token found");
@@ -26,7 +26,7 @@ $(document).ready(function() {
 		},
 		error: function() {
 			console.log("auth put failed");
-			// window.location.assign("/html/loginScreen.html");
+			window.location.assign("/html/loginScreen.html");
 		}
 	});
 
