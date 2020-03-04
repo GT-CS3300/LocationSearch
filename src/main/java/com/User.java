@@ -9,23 +9,20 @@ public class User implements Serializable {
 	// User attributes
 	private String email;
 	private String password;
+	private String authToken;
 	/*More attributes if needed*/
 
 	/**
 	 * Generic user class, really just a tuple...
 	 *
-	 * @param email    the email of the user
-	 * @param password the input password of the user... needs to be hashed + salted before storage...
+	 *  email    the email of the user
+	 *
+	 * password the input password of the user... needs to be hashed + salted before storage...
 	 */
-	public User(String email, String password) {
-		this.email = email;
-		// TODO the hashing
-		this.password = password;
-	}
-
 	public User() {
 		this.email = null;
 		this.password = null;
+		this.authToken = null;
 	}
 	
 	// Generic Getters and setters
@@ -67,6 +64,14 @@ public class User implements Serializable {
 				"email='" + email + '\'' +
 				", hash='" + password + '\'' +
 				'}';
+	}
+
+	public String getAuthToken() {
+		return authToken;
+	}
+
+	public void setAuthToken(String authToken) {
+		this.authToken = authToken;
 	}
 
 
