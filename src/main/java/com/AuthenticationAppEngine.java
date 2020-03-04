@@ -1,7 +1,11 @@
 package com;
 
-import com.google.cloud.datastore.Datastore;
-import com.google.cloud.datastore.DatastoreOptions;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+
+
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
 import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,8 +19,9 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationAppEngine {
-	private Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+	private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	private Gson gson = new Gson();
+	private static String kind = "user";
 
 
 	/**
@@ -48,17 +53,15 @@ public class AuthenticationAppEngine {
 
 		System.out.println("newUser = " + newUser);
 
-//		Entity userEntity = new Entity("User");
-//		userEntity.setProperty("email", newUser.getEmail());
-//		userEntity.setProperty("hash", newUser.getPassword()); // use PBKDF2 to hash and salt the passkey
-//		datastore.put(userEntity);
+		Entity incBookEntity = new Entity(kind);  // Key will be assigned once written
+		incBookEntity.setProperty("email", newUser.getEmail());
+
+
+		Key bookKey = datastore.put(incBookEntity); // Save the Entity
+
 
 		return gson.toJson(newUser);
 
-
-//    String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXBkYXRlZEF0IjoiMjAyMC0wMi0yMVQxNjo1MToyMC44NzFaIiwiY3JlYXRlZEF0IjoiMjAyMC0wMi0yMVQxNjo1MToyMC44NzFaIiwiaWF0IjoxNTgyMzAzODgwLCJleHAiOjE1ODI5MDg2ODB9.CfqN2kPmczXtY98z23yNPFQISSVabbm6LYo2EIqA_Fs";
-//    JSONObject json = new JSONObject().put("Token", token);
-//    return json.toString();
 	}
 
 
