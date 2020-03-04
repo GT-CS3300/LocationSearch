@@ -28,18 +28,15 @@ $(document).ready(function() {
                     "password":pwd
                  }),
                 success: function(dataFromServer) {
-					var result = JSON.parse(dataFromServer);
-					sessionStorage.LSToken = "TokenFailure";
+                    console.log(dataFromServer);
+                    console.log(dataFromServer.token);
+					sessionStorage.LSToken = dataFromServer.token;
 					
-					if (dataFromServer == "true") {
+					if (dataFromServer.token) {
 						window.location.assign("/html/locationSearchScreen.html"); 
 						console.log("server data success");
-						console.log(result);
-						console.log(dataFromServer);
 					} else {
 						console.log("server data failed");
-						console.log(result);
-						console.log(dataFromServer);
 					}
                 },
                 error: function() {

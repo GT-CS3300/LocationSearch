@@ -8,18 +8,27 @@ $(document).ready(function() {
 	$.ajax({
 		type: 'PUT',
 		url: '/auth',
-		data: {'authtoken': sessionStorage.LSToken },
+		'dataType': 'json',
+		processData: false,
+		'contentType': 'application/json',
+		'data':JSON.stringify({
+			"token":sessionStorage.LSToken
+		 }),
 		success: function(dataFromServer) {
 			console.log("auth put succeeded");
-
-			var result = JSON.parse(dataFromServer);
-
-			if (result == false) {
-				//window.location.assign("/html/loginScreen.html"); 
+			console.log(dataFromServer);
+			console.log(dataFromServer.authorized);
+			
+			if (!dataFromServer.authorized) {
+				window.location.assign("/html/loginScreen.html"); 
+				console.log("Auth token not found");
+			} else {
+				console.log("Auth token found");
 			}
 		},
 		error: function() {
-			//window.location.assign("/html/loginScreen.html"); 
+			console.log("auth put failed");
+			window.location.assign("/html/loginScreen.html"); 
 		}
 	});
 
@@ -66,7 +75,14 @@ $(document).ready(function() {
 			$.ajax({
 				type: 'POST',
 				url: '/history',
-				data: {'Lat': lat,'Long':long },
+				'dataType': 'json',
+				processData: false,
+				'contentType': 'application/json',
+				'data':JSON.stringify({
+					"token":sessionStorage.LSToken,
+					"lat":lat,
+					"long":long
+				 }),
 				success: function(dataFromServer) {
 					console.log("History post success");
 				},
@@ -204,7 +220,12 @@ function updateHistoryButtons() {
 	$.ajax({
 		type: 'GET',
 		url: '/history',
-		data: {'authtoken': sessionStorage.LSToken },
+		'dataType': 'json',
+		processData: false,
+		'contentType': 'application/json',
+		'data':JSON.stringify({
+			"token":sessionStorage.LSToken
+		 }),
 		success: function(dataFromServer) {
 			console.log("History get succeeded");
 
