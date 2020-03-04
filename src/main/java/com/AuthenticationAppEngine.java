@@ -24,13 +24,16 @@ public class AuthenticationAppEngine {
 	private static String kind = "user";
 
 	@GetMapping
-	public String goodByeGet(@RequestBody String body) {
+	public String goodByeGet(HttpServletRequest request, @RequestBody String body) {
 		User authingUser = gson.fromJson(body, User.class);
+		
+		String email = request.getHeader("email");
+		String password = request.getHeader("password");
 
 		//check that the email/password match
 		//Building the query
-		Filter emailFilter = new FilterPredicate("email", FilterOperator.EQUAL, authingUser.getEmail());
-		Filter passwordFilter = new FilterPredicate("password", FilterOperator.EQUAL, authingUser.getPassword());
+		Filter emailFilter = new FilterPredicate("email", FilterOperator.EQUAL, email);
+		Filter passwordFilter = new FilterPredicate("password", FilterOperator.EQUAL, password);
 		CompositeFilter filter = CompositeFilterOperator.and(emailFilter, passwordFilter);
 		Query q = new Query(kind).setFilter(filter);
 
