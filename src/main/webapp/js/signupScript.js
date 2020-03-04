@@ -21,6 +21,13 @@ $(document).ready(function() {
                 type: 'POST',
                 url: '/auth',
                 data: {'email': email,'password':pwd},
+                'dataType': 'json',
+                processData: false,
+                'contentType': 'application/json',
+                'data':JSON.stringify({
+                    "email":email,
+                    "password":pwd
+                 }),
                 success: function(dataFromServer) {
 					var result = JSON.parse(dataFromServer);
 					sessionStorage.LSToken = "TokenFailure";
