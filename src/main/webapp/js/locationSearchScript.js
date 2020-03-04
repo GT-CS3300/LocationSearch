@@ -223,9 +223,7 @@ function updateHistoryButtons() {
 		'dataType': 'json',
 		processData: false,
 		'contentType': 'application/json',
-		'data':JSON.stringify({
-			"token":sessionStorage.LSToken
-		 }),
+		headers: {"token": sessionStorage.LSToken},
 		success: function(dataFromServer) {
 			console.log("History get succeeded");
 

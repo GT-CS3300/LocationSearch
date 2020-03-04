@@ -12,10 +12,7 @@ $(document).ready(function() {
                 'dataType': 'json',
                 processData: false,
                 'contentType': 'application/json',
-                'data':JSON.stringify({
-                    "email":email,
-                    "password":pwd
-                 }),
+				headers: {"email": email, "password": pwd},
 				success: function(dataFromServer) {
                     console.log(dataFromServer);
                     console.log(dataFromServer.token);
