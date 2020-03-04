@@ -20,7 +20,17 @@ $(document).ready(function() {
             $.ajax({
                 type: 'POST',
                 url: '/auth',
+<<<<<<< Updated upstream
                 data: {'email': email,'password':pwd},
+=======
+                'dataType': 'json',
+                processData: false,
+                'contentType': 'application/json',
+                'data':JSON.stringify({
+                    "email":email,
+                    "password":pwd
+                 }),
+>>>>>>> Stashed changes
                 success: function(dataFromServer) {
 					var result = JSON.parse(dataFromServer);
 					sessionStorage.LSToken = "TokenFailure";
